@@ -6,7 +6,7 @@ int main()
 {
     int m, n, Q[lmax][lmax];
     char check;
-
+    printf("Лабораторная работа №2, задача №1\n");
     do {
         printf("Введите количество строк матрицы Q (от 1 до %d): ", lmax);
         scanf("%d", &m);
