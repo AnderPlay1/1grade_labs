@@ -98,12 +98,12 @@ int main()
         }
         g = 1;
         while (g <= k && lineSum != Z[g]) {
-            g++;
+            g++;    
         }
         if (g <= k) {
             printf("Сумма элементов %d-й строки матрицы Q равна %d, что совпадает с элементом Z[%d] = %d\n", i, lineSum, g, Z[g]);
-            for (int j = 1; j < n; j++) {
-                for (int p = j + 1; p <= n; p++) {
+            for (int j = 1; j < m; j++) {
+                for (int p = j + 1; p <= m; p++) {
                     if (Q[i][j] < Q[i][p]) {
                         int swap = Q[i][j];
                         Q[i][j] = Q[i][p];
