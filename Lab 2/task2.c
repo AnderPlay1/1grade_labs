@@ -1,11 +1,7 @@
 #include <stdio.h>
 #include <limits.h>
 #define lmax 100
-/*
-II. Дан массив целых положительных чисел.
-    3. Сформировать новый массив, содержащий произведения цифр каждого
-    элемента исходного массива.
-*/
+
 int main() {
     int n, A[lmax];
     char check;
@@ -38,7 +34,7 @@ int main() {
         } while (check != '\n' || temp == INT_MAX);
         A[i] = temp;
     }
-    
+
     int B[lmax];
     for (int i = 1; i <= n; i++) {
         int prod = 1, x = A[i];
