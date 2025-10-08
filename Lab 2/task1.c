@@ -12,7 +12,7 @@ int main()
         scanf("%d", &n);
         check = getchar();
         if (check != '\n' || n <= 0) {
-            printf("Некорректнрый ввод (m должно быть натуральным).\n");
+            printf("Некорректнрый ввод (n должно быть натуральным).\n");
             n = 0;
             while (check != '\n' && check != EOF) {
                     check = getchar();
@@ -25,7 +25,7 @@ int main()
         scanf("%d", &m);
         check = getchar();
         if (check != '\n' || m <= 0) {
-            printf("Некорректнрый ввод (n должно быть натуральным).\n");
+            printf("Некорректнрый ввод (m должно быть натуральным).\n");
             m = 0;
             while (check != '\n' && check != EOF) {
                     check = getchar();

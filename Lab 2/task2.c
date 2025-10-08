@@ -7,7 +7,7 @@ int main() {
     char check;
     printf("Лабораторная работа №2, задача №2\n");
     do {
-        printf("Введите количество элементов массива A (от 1 до %d): ", lmax);
+        printf("Введите количество строк матрицы A (от 1 до %d): ", lmax);
         scanf("%d", &n);
         check = getchar();
         if (check != '\n' || n <= 0) {
