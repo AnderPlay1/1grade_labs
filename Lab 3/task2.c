@@ -87,6 +87,6 @@ int main() {
     printf("Original matrix A: \n");
     print_matrix(A, n, m);
     V = calculate(A, n, m);
-    printf("Your desired value V = %d: \n", V);
+    printf("Your desired value V = %d \n", V);
     return 0;
 }

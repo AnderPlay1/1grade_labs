@@ -64,7 +64,7 @@ void input_vars(float *x1, float *x2, float *x3, float *y1, float *y2, float *y3
 
 int main() {
     float x1, x2, x3, y1, y2, y3;
-    printf("Лабораторная работа №3, задача №2\n");
+    printf("Lab work #3, task #2\n");
     input_vars(&x1, &x2, &x3, &y1, &y2, &y3);
     calculate_function(x1, x2, x3, y1, y2, y3);
     return 0;
