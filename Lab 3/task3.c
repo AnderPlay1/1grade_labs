@@ -55,11 +55,33 @@ int calculate(int A[], int n) {
     return n;
 }
 
+void count_duplicates(int A[], int n) {
+    printf("Element counts:\n");
+    int processed = 0;
+    
+    for (int i = 0; i < n; i++) {
+        int count = 0;
+        processed = 0;
+        for (int j = 0; j < i; j++) {
+            if (A[i] == A[j]) {
+                processed = 1;
+                continue;
+            }
+        }
+        if(processed)
+            continue;
+        for (int j = i + 1; j < n; j++){
+            if (A[i] == A[j]) 
+                count++;
+        }           
+        printf("Element %d repeats %d time(s)\n", A[i], count);
+    }
+}
 
 int main() {
     int A[lmax][lmax], n, m, V;
     char check;
-    printf("Lab work #3, task #2\n");
+    printf("Lab work #3, task #3\n");
     do {
         printf("Enter the number of elements in array A (from 1 to %d): ", lmax);
         scanf("%d", &n);
@@ -76,9 +98,12 @@ int main() {
     insert_array(*A, n);
     printf("Original array A: \n");
     print_array(*A, n);
-
+    count_duplicates(*A, n);
     n = calculate(*A, n);
-    printf("New n: %d\n", n);
+    if (n == 0) {
+        printf("New array is empty. \n");
+        return 0;
+    }
     printf("New array: \n");
     print_array(*A, n);
     return 0;

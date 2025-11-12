@@ -8,7 +8,7 @@ float calculate_function(float x1, float x2, float x3, float y1, float y2, float
         printf("Insert value of point x (It must belong to the segment [x1; x3]): \n");
         ret = scanf("%f", &x);
         while (getchar() != '\n'); 
-    } while (ret != 1);
+    } while (ret != 1 || x < x1 || x > x3);
 
     float result;
     if (x < x2) {
