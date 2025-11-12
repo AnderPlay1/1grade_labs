@@ -19,7 +19,6 @@ float calculate_function(float x1, float x2, float x3, float y1, float y2, float
         result = y3;
     }
 
-    printf("Approximate value f(%.2f) = %.2f \n", x, result);
     return result;
 }
 
@@ -62,10 +61,15 @@ void input_vars(float *x1, float *x2, float *x3, float *y1, float *y2, float *y3
     } while (ret != 1);
 }
 
+void print_answer(int V) {
+    printf("Your desired value V = %d \n", V);
+}
+
 int main() {
-    float x1, x2, x3, y1, y2, y3;
-    printf("Lab work #3, task #2\n");
+    float x1, x2, x3, y1, y2, y3, V;
+    printf("Lab work #3, task #1\n");
     input_vars(&x1, &x2, &x3, &y1, &y2, &y3);
-    calculate_function(x1, x2, x3, y1, y2, y3);
+    V = calculate_function(x1, x2, x3, y1, y2, y3);
+    print_answer(V);
     return 0;
 }
