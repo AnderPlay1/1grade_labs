@@ -62,7 +62,7 @@ void input_vars(float *x1, float *x2, float *x3, float *y1, float *y2, float *y3
 }
 
 void print_answer(int V) {
-    printf("Your desired value V = %d \n", V);
+    printf("Your desired value of function f = %d \n", V);
 }
 
 int main() {
