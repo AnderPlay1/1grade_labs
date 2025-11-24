@@ -17,7 +17,7 @@
 #include <ctype.h>
 
 #define kmax 100
-#define maxlen 1000
+#define maxlen 81
 
 // -----------------------------------------
 // I. Выделение подстрок в фигурных скобках
@@ -65,7 +65,8 @@ int hasDigitsAndParentheses(const char *s) {
 int insertStars(char *s) {
     int pos = -1;
     for (int i = 0; s[i]; i++)
-        if (isdigit(s[i])) pos = i;
+        if (isdigit(s[i])) 
+            pos = i;
 
     if (pos == -1) return 0; 
 
