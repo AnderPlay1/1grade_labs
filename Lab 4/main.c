@@ -19,9 +19,8 @@
 #define kmax 100
 #define maxlen 81
 
-// -----------------------------------------
+
 // I. Выделение подстрок в фигурных скобках
-// -----------------------------------------
 int extractBraces(const char *src, char results[][maxlen], int *count) {
     int i = 0, n = strlen(src);
     int found = 0;
@@ -45,9 +44,7 @@ int extractBraces(const char *src, char results[][maxlen], int *count) {
     return found;
 }
 
-// ------------------------------------------------------------
 // II. Проверка, содержит ли подстрока цифры и круглые скобки
-// ------------------------------------------------------------
 int hasDigitsAndParentheses(const char *s) {
     int digit = 0, brace = 0;
     for (int i = 0; s[i]; i++) {
@@ -59,9 +56,7 @@ int hasDigitsAndParentheses(const char *s) {
     return 0;
 }
 
-// ------------------------------------------------------------
 // III. Вставить "***" перед последней цифрой строки
-// ------------------------------------------------------------
 int insertStars(char *s) {
     int pos = -1;
     for (int i = 0; s[i]; i++)
@@ -105,9 +100,9 @@ int main() {
         lines[i][strcspn(lines[i], "\n")] = '\0';
     }
 
-    char substrings[kmax * 10][maxlen];
+    char substrings[kmax * 100][maxlen];
     int total = 0;
-    int owner[kmax * 10]; 
+    int owner[kmax * 100]; 
 
     // I. Извлекаем подстроки
     for (int i = 0; i < k; i++) {
@@ -139,15 +134,10 @@ int main() {
         printf("\nThere is no substring containing numbers and parentheses.\n");
         return 0;
     }
+    printf("Substring was found: \n%s\n", substrings[target]);
 
     // III. Преобразуем исходную строку
     int lineIndex = owner[target];
-
-    if (!insertStars(lines[lineIndex])) {
-        printf("\nThere are no numbers to insert in the source string.\n");
-        return 0;
-    }
-
     printf("\nConverted string:\n%s\n", lines[lineIndex]);
 
     return 0;
