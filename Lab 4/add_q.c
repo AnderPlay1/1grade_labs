@@ -1,34 +1,31 @@
 // Дано k литерных строк. Каждая строка содержит латинские и русские буквы, цифры, а также все возможные разделители. Требуется:
-
 // I.	Выделить из каждой строки и напечатать подстроки:
-// 1.	заключенные в фигурные скобки;
-// ПРИМЕЧАНИЕ. Пробел считать буквой. Каждую подстроку печатать с новой строки. Пустые подстроки не выделять и не печатать.
+// 3.	ограниченные с обеих сторон одной или несколькими звездочками;
 
 // II.	Среди выделенных подстрок найти подстроку (если таких подстрок несколько, выбирается первая из них):
-// 3.	содержащую цифры и круглые скобки
-// ПРИМЕЧАНИЕ. Если таких подстрок несколько, выбирается первая из них.
+// 4.	содержащую максимальное (но не нулевое) число цифр;
 
 // III.	Преобразовать исходную строку, которой принадлежит найденная подстрока, следующим образом:
-// 11.	вставить три звездочки перед последней цифрой.
-// ЗАМЕЧАНИЕ. Все части оформить как подпрограммы в одной программе. Ввод данных, анализ существования результатов и их вывод оформить в главной программе. Если выполнение какого-либо задания невозможно, то необходимо вывести соответствующее сообщение. 
+// 2.	удалить путем сдвига все символы, отличные от русских букв;
+
 
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-
+#include <stdlib.h>
 #define kmax 100
 #define maxlen 81
 
 
-// I. Выделение подстрок в фигурных скобках
-int extractBraces(const char *src, char results[][maxlen], int *count) {
+int extractStars(const char *src, char results[][maxlen], int *count) {
     int i = 0, n = strlen(src);
     int found = 0;
 
     while (i < n) {
-        if (src[i] == '{') {
-            int j = i + 1;
-            while (j < n && src[j] != '}') j++;
+        if (src[i] == '*') {
+            while (src[i] == '*') i++;
+            int j = i;
+            while (j < n && src[j] != '*') j++;
 
             if (j < n && j > i + 1) {  
                 int len = j - i - 1;
@@ -44,34 +41,25 @@ int extractBraces(const char *src, char results[][maxlen], int *count) {
     return found;
 }
 
-// II. Проверка, содержит ли подстрока цифры и круглые скобки
-int hasDigitsAndParentheses(const char *s) {
-    int digit = 0, brace = 0;
+// 4.	содержащую максимальное (но не нулевое) число цифр;
+int cntDigits(const char *s) {
+    int cnt_digits = 0;
     for (int i = 0; s[i]; i++) {
-        if (isdigit(s[i])) digit = 1;
-        if (s[i] == '(' || s[i] == ')') brace = 1;
+        if (isdigit(s[i])) cnt_digits++;
     }
-    if (digit && brace)
-        return 1;
-    return 0;
+    return cnt_digits;
 }
 
-// III. Вставить "***" перед последней цифрой строки
-int insertStars(char *s) {
-    int pos = -1;
+// 2.	удалить путем сдвига все символы, отличные от русских букв;
+int deleteNotRus(char *s) {
+    int pos = -1, j = 0;
+    int len = strlen(s);
     for (int i = 0; s[i]; i++)
-        if (isdigit(s[i])) 
-            pos = i;
-
-    if (pos == -1) return 0; 
-
-    char temp[maxlen];
-    strcpy(temp, s + pos); 
-
-    s[pos] = '\0';          
-    strcat(s, "***");       
-    strcat(s, temp);        
-
+        if (isalpha(s[i])) {      
+            s[j] = s[i];
+            j++;
+        }
+    s[j - 1] = '\0';
     return 1;
 }
 
@@ -107,7 +95,7 @@ int main() {
     // I. Извлекаем подстроки
     for (int i = 0; i < k; i++) {
         int startCount = total;
-        extractBraces(lines[i], substrings, &total);
+        extractStars(lines[i], substrings, &total);
         for (int j = startCount; j < total; j++)
             owner[j] = i;
     }
@@ -122,11 +110,12 @@ int main() {
         printf("%s\n", substrings[i]);
 
     // II. Находим первую подстроку, содержащую цифры и круглые скобки
-    int target = -1;
+    int target = -1, max = 0;
     for (int i = 0; i < total; i++) {
-        if (hasDigitsAndParentheses(substrings[i])) {
+        int cnt = cntDigits(substrings[i]);
+        if (max < cnt) {
             target = i;
-            break;
+            max = cnt;
         }
     }
 
@@ -135,10 +124,10 @@ int main() {
         return 0;
     }
     printf("Substring was found: \n%s\n", substrings[target]);
-
+    deleteNotRus(lines[target]);
     // III. Преобразуем исходную строку
     int lineIndex = owner[target];
-    insertStars(lines[lineIndex]);
     printf("\nConverted string:\n%s\n", lines[lineIndex]);
+
     return 0;
 }
