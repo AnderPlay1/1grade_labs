@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
+
 
 #define fname "numbers.txt"
 #define maxn 1000
@@ -11,8 +13,7 @@ int minPositive(double *res) {
     FILE *f = fopen(fname, "r");
     if (!f) return 0;
 
-    double x;
-    double min = 1e308;
+    double x, min = INT_MAX;
     int found = 0;
 
     while (fscanf(f, "%lf", &x) == 1) {
@@ -59,7 +60,7 @@ int main() {
 
     double result;
     int len = file_write();
-    
+
     if (len == 0) {
         printf("No numbers were written to the file.\n");
         return 0;
