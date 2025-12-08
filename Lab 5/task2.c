@@ -112,7 +112,7 @@ int main() {
         } while (check != '\n' || x == INT_MAX);
 
         if (x == -999) break;
-        head = pushStack(head, x);
+        head = pushQueue(head, x);
     }
 
     int A1;
