@@ -17,8 +17,6 @@ inline int readInt(const string &prompt, int minV, int maxV)
         {
             size_t pos;
             int x = stoi(s, &pos);
-
-            // если остались лишние символы (например 3.14)
             if (pos != s.length())
             {
                 cout << "Not pure integer\n";
@@ -39,7 +37,7 @@ inline int readInt(const string &prompt, int minV, int maxV)
     }
 }
 
-// 2) Input array (uses readInt)
+// 2) Input array
 inline void readArray(int *a, int n, const string &name, int minV, int maxV)
 {
     cout << "Enter " << n << " integers for " << name << ":\n";
@@ -47,7 +45,7 @@ inline void readArray(int *a, int n, const string &name, int minV, int maxV)
         a[i] = readInt("  " + name + "[" + to_string(i) + "]: ", minV, maxV);
 }
 
-// 3) Input matrix (uses readInt / readArray idea)
+// 3) Input matrix
 inline void readMatrix(int *m, int r, int c, const string &name, int minV, int maxV)
 {
     cout << "Enter matrix " << name << " (" << r << "x" << c << "):\n";
