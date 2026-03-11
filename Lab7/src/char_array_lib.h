@@ -1,12 +1,10 @@
 #ifndef CHAR_ARRAY_LIB_H
 #define CHAR_ARRAY_LIB_H
 
-#include <string>
-
-extern const int CHAR_NPOS;
-extern const int CHAR_SUCCESS;
-extern const int CHAR_ERR_INVALID_ARG;
-extern const int CHAR_ERR_ALLOC;
+inline constexpr int CHAR_NPOS = -1;
+inline constexpr int CHAR_SUCCESS = 0;
+inline constexpr int CHAR_ERR_INVALID_ARG = -1;
+inline constexpr int CHAR_ERR_ALLOC = -2;
 
 int char_length(const char *str);
 bool char_empty(const char *str);

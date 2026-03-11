@@ -7,8 +7,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Имя исполняемого файла
+
 add_executable(MyProject
     src/main.cpp
+    src/char_array_lib.cpp
 )
 
 # Папка с заголовочными файлами

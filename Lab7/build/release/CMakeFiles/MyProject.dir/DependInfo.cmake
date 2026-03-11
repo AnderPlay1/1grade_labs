@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "C:/1grade_labs/Lab7/src/char_array_lib.cpp" "CMakeFiles/MyProject.dir/src/char_array_lib.cpp.obj" "gcc" "CMakeFiles/MyProject.dir/src/char_array_lib.cpp.obj.d"
   "C:/1grade_labs/Lab7/src/main.cpp" "CMakeFiles/MyProject.dir/src/main.cpp.obj" "gcc" "CMakeFiles/MyProject.dir/src/main.cpp.obj.d"
   )
 

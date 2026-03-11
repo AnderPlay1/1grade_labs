@@ -128,6 +128,30 @@ MyProject/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyProject.dir\build.make CMakeFiles/MyProject.dir/build
 .PHONY : MyProject/fast
 
+src/char_array_lib.obj: src/char_array_lib.cpp.obj
+.PHONY : src/char_array_lib.obj
+
+# target to build an object file
+src/char_array_lib.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyProject.dir\build.make CMakeFiles/MyProject.dir/src/char_array_lib.cpp.obj
+.PHONY : src/char_array_lib.cpp.obj
+
+src/char_array_lib.i: src/char_array_lib.cpp.i
+.PHONY : src/char_array_lib.i
+
+# target to preprocess a source file
+src/char_array_lib.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyProject.dir\build.make CMakeFiles/MyProject.dir/src/char_array_lib.cpp.i
+.PHONY : src/char_array_lib.cpp.i
+
+src/char_array_lib.s: src/char_array_lib.cpp.s
+.PHONY : src/char_array_lib.s
+
+# target to generate assembly for a file
+src/char_array_lib.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyProject.dir\build.make CMakeFiles/MyProject.dir/src/char_array_lib.cpp.s
+.PHONY : src/char_array_lib.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -161,6 +185,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... MyProject
+	@echo ... src/char_array_lib.obj
+	@echo ... src/char_array_lib.i
+	@echo ... src/char_array_lib.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

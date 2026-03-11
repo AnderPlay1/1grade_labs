@@ -2,11 +2,6 @@
 
 #include <new>
 
-const int CHAR_NPOS = -1;
-const int CHAR_SUCCESS = 0;
-const int CHAR_ERR_INVALID_ARG = -1;
-const int CHAR_ERR_ALLOC = -2;
-
 // Функция для копирования символов из src в dest
 static void copy_chars(char *dest, const char *src, int count)
 {

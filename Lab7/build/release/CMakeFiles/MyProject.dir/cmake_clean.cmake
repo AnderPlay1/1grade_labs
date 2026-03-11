@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/MyProject.dir/src/char_array_lib.cpp.obj"
+  "CMakeFiles/MyProject.dir/src/char_array_lib.cpp.obj.d"
   "CMakeFiles/MyProject.dir/src/main.cpp.obj"
   "CMakeFiles/MyProject.dir/src/main.cpp.obj.d"
   "MyProject.exe"
