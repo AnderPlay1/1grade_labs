@@ -4,6 +4,7 @@
 #include <chrono>
 #include <cstring>
 
+#include "lib.h"
 #include "char_array_lib.h"
 
 using namespace std;
@@ -22,49 +23,89 @@ static void print_string_state(const char *label, const char *str)
     cout << '\n';
 }
 
+static char *input_char_string(const string &prompt)
+{
+    cout << prompt;
+    string temp;
+    cin >> temp;
+    return char_create(temp.c_str());
+}
+
+static char readCharValue(const string &prompt)
+{
+    while (true)
+    {
+        cout << prompt << endl;
+        string s;
+        getline(cin, s);
+        if (s.size() == 1)
+        {
+            return s[0];
+        }
+        cout << "Please enter exactly one character.\n";
+    }
+}
+
 static void part1_demo()
 {
     cout << "==================== Part 1 ====================\n";
     cout << "Manual testing of char array library functions.\n\n";
 
-    char *s = char_create("Hello");
-    char *other = char_create("World");
-
+    char *s = input_char_string("Enter first string: ");
+    char *other = input_char_string("Enter second string: ");
+    char temp;
+    char *str_temp;
+    int temp_pos, temp_pos1;
     print_string_state("Initial s", s);
     print_string_state("Initial other", other);
     cout << "Length(s): " << char_length(s) << '\n';
     cout << "Empty(s): " << (char_empty(s) ? "true" : "false") << "\n\n";
 
-    cout << "Append \"!!!\" to s\n";
-    cout << "Result code: " << char_append(&s, "!!!") << '\n';
+    str_temp = input_char_string("Insert string to append: ");
+    cout << "Append " << str_temp << " to s\n";
+    cout << "Result code: " << char_append(&s, str_temp) << '\n';
     print_string_state("s", s);
     cout << '\n';
 
-    cout << "Insert ',' at position 5\n";
-    cout << "Result code: " << char_insert(&s, 5, ',') << '\n';
+    temp = readCharValue("Insert char value to insert: ");
+    temp_pos = readInt("Insert position of isertion: ", 0, char_length(s));
+    cout << "Insert '" << temp << "' at position" << temp_pos << "\n";
+    cout << "Result code: " << char_insert(&s, temp_pos, temp) << '\n';
     print_string_state("s", s);
     cout << '\n';
 
-    cout << "Erase 2 chars from position 5\n";
-    cout << "Result code: " << char_erase(&s, 5, 2) << '\n';
+    temp_pos = readInt("Insert count of chars to erase: ", 0, char_length(s));
+    temp_pos1 = readInt("Insert position of erase: ", 0, char_length(s));
+    cout << "Erase " << temp_pos << " chars from position " << temp_pos1 << "\n";
+    cout << "Result code: " << char_erase(&s, temp_pos, temp_pos1) << '\n';
     print_string_state("s", s);
     cout << '\n';
 
-    cout << "Replace from position 5 count 3 with \"---\"\n";
-    cout << "Result code: " << char_replace(&s, 5, 3, "---") << '\n';
+    temp_pos1 = readInt("Insert position of replace: ", 0, char_length(s));
+    temp_pos = readInt("Insert count of chars to replace: ", 0, char_length(s));
+    str_temp = input_char_string("Insert string to replace with: ");
+    cout << "Replace from position " << temp_pos1 << " count " << temp_pos << " with " << str_temp << "\n";
+    cout << "Result code: " << char_replace(&s, temp_pos1, temp_pos, str_temp) << '\n';
     print_string_state("s", s);
     cout << '\n';
 
-    cout << "Resize s to 12 with fill char '*'\n";
-    cout << "Result code: " << char_resize(&s, 12, '*') << '\n';
+    temp_pos = readInt("Insert int to resize: ", 0, 100);
+    temp = readCharValue("Insert char value to resize: ");
+    cout << "Resize s to " << temp_pos << " with fill char " << temp << "\n";
+    cout << "Result code: " << char_resize(&s, temp_pos, temp) << '\n';
     print_string_state("s", s);
     cout << '\n';
 
-    cout << "Find \"lo\": " << char_find(s, "lo") << '\n';
-    cout << "RFind \"*\": " << char_rfind(s, "*") << '\n';
+    str_temp = input_char_string("Insert string to find: ");
+    cout << "Find " << str_temp << " : " << char_find(s, str_temp) << '\n';
 
-    char *sub = char_substr(s, 2, 5);
-    print_string_state("Substring s[2..6]", sub);
+    str_temp = input_char_string("Insert string to rfind: ");
+    cout << "RFind " << str_temp << " : " << char_rfind(s, str_temp) << '\n';
+
+    temp_pos1 = readInt("Insert start position of substring: ", 0, char_length(s));
+    temp_pos = readInt("Insert end position of substring: ", temp_pos1, char_length(s));
+    char *sub = char_substr(s, temp_pos1, temp_pos);
+    print_string_state("Substring ", sub);
     char_destroy(&sub);
     cout << '\n';
 

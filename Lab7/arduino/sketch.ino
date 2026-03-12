@@ -8,33 +8,6 @@ const int CHAR_ERR_INVALID_ARG = -1;
 const int CHAR_ERR_OVERFLOW = -2;
 const int CHAR_ERR_OUT_OF_RANGE = -3;
 
-char_size_t char_length_a(const char *str);
-bool char_empty_a(const char *str);
-
-int char_copy_a(char *dest, char_size_t capacity, const char *src);
-int char_clear_a(char *str, char_size_t capacity);
-
-int char_resize_a(char *str, char_size_t capacity, char_size_t new_size, char fill_char = '\0');
-
-int char_insert_a(char *str, char_size_t capacity, char_size_t pos, const char *substring);
-int char_insert_a(char *str, char_size_t capacity, char_size_t pos, char ch);
-
-int char_erase_a(char *str, char_size_t pos, char_size_t count);
-int char_replace_a(char *str, char_size_t capacity, char_size_t pos, char_size_t count, const char *new_substr);
-
-int char_find_a(const char *str, const char *substring, char_size_t pos = 0);
-int char_rfind_a(const char *str, const char *substring);
-
-int char_substr_a(const char *str, char *out, char_size_t out_capacity, char_size_t pos, char_size_t count);
-
-int char_append_a(char *str, char_size_t capacity, const char *substring);
-int char_append_a(char *str, char_size_t capacity, char ch);
-
-void char_swap_a(char *str1, char_size_t cap1, char *str2, char_size_t cap2);
-
-int char_memory_storage_a(const char *str);
-int freeMemory();
-
 static const uint16_t BUF_SIZE = 64;
 static const uint32_t ITERATIONS = 1000;
 
@@ -375,22 +348,6 @@ int char_memory_storage_a(const char *str)
         return 0;
     return (int)char_length_a(str) + 1;
 }
-
-#if defined(__AVR__)
-extern unsigned int __heap_start;
-extern void *__brkval;
-
-int freeMemory()
-{
-    int v;
-    return (int)&v - (__brkval == 0 ? (int)&__heap_start : (int)__brkval);
-}
-#else
-int freeMemory()
-{
-    return -1;
-}
-#endif
 
 void printHeader(const __FlashStringHelper *title)
 {
